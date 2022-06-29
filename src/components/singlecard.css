@@ -1,0 +1,29 @@
+.card:hover{
+  transform: scale(1.1);
+  transition: 0.1s linear;
+}
+
+.card-grill img{
+    width: 100%;
+    display: block;
+    border: 2px solid purple;
+    border-radius: 10px;
+}
+
+/* card grill */
+
+.card-grill{
+    display: inline-flex;
+    justify-content: space-between;
+    position: relative;
+    margin: 10px;
+  }
+  
+  .card.back{
+    position: absolute;
+    top: 0;
+  }
+  .flip > .back{
+    z-index: -1;
+  }
+  
