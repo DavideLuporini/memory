@@ -27,3 +27,8 @@
     z-index: -1;
   }
   
+  .disable{
+    pointer-events: none;
+    user-select: none;
+
+  }

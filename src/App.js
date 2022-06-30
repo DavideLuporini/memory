@@ -1,7 +1,6 @@
 import { useEffect , useState } from 'react'
 import './App.css'
 import Singlecard from './components/Singlecard'
-import ModalWin from './components/ModalWin'
 
 // array of images
 const cardImages = [
@@ -13,7 +12,6 @@ const cardImages = [
   { "src" : "/img/sword-1.png" , matched:false},
 ]
 
-
 function App() {
   
   // using state to set cards
@@ -22,10 +20,10 @@ function App() {
 const [turns , setTurns] = useState(0)
 
 
-
 // setting choice state
 const [firstChoice , setFirstChoice] = useState(null)
 const [secondChoice , setSecondChoice] = useState(null)
+  
 
   // function to have random cards on the grill
   const randomizeCards = () =>{
@@ -36,8 +34,9 @@ const [secondChoice , setSecondChoice] = useState(null)
  
   // function to handleChoice
   const  handleChoice = (card) => {
-    // use ternal operator to set the choiseù
+    // use ternal operator to set the choise
     firstChoice ? setSecondChoice(card) : setFirstChoice(card)
+    console.log(firstChoice + "è la prima scelta", secondChoice + "è la seconda scelta")
   }
 
 
@@ -45,11 +44,9 @@ const [secondChoice , setSecondChoice] = useState(null)
   // i use useeffect to compare 2 cards
 useEffect(() =>{
   if(firstChoice && secondChoice){
-    
+
     if(firstChoice.src !== secondChoice.src){
       setTimeout(() => resetTurns(), 3000);
-      // //! il deelay non funziona
-      // setTimeout()(resetTurns(), 5000);
             
     }else{
       setCards( prevCards => {
@@ -90,7 +87,6 @@ const determineWin = () => {
   }
 }
 
-console.log(cards.every(allTrue))
 
 return (
     <div className="App">
@@ -98,13 +94,16 @@ return (
       <button onClick={randomizeCards}>Start Game</button>
       <h1>Moves: {turns}</h1>
       <h1 className={cards.every(allTrue) && cards.length > 0  ? "" : "d-none" }> HAI VINTO</h1>
+
       {/* grill section */}
       {cards.map(card =>(
       <Singlecard 
       key={card.id} 
       card={card} 
       handleChoice={handleChoice}
-      flipped={ card === firstChoice || card === secondChoice || card.matched}/>
+      flipped={ card === firstChoice || card === secondChoice || card.matched}
+      disabled={firstChoice && secondChoice}
+      />
         )
         )
       }
