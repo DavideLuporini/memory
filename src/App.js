@@ -107,6 +107,8 @@ return (
         )
         )
       }
+      {/* <h1>{firstChoice ? firstChoice.src : ""}</h1>
+      <h1>{secondChoice ? secondChoice.src : ""}</h1> */}
     </div>
   );
 }
